@@ -1,6 +1,7 @@
 nodes:
   - address: 192.81.214.227
     user: root
+    # ssh_key_path: ./cellcard.pem
     role:
       - controlplane
       - etcd
@@ -8,12 +9,7 @@ nodes:
 
   - address: 67.205.190.198
     user: root
-    role:
-      - controlplane
-      - etcd
-      - worker
-  - address: 159.89.52.60
-    user: root
+    # ssh_key_path: ./cellcard.pem
     role:
       - controlplane
       - etcd
