@@ -9,13 +9,17 @@ nodes:
   - address: 67.205.190.198
     user: root
     role:
+      - controlplane
+      - etcd
       - worker
   - address: 159.89.52.60
     user: root
     role:
+      - controlplane
+      - etcd
       - worker
 
-kubernetes_version: "v1.23.16-rancher2-1"
+kubernetes_version: "v1.24.10-rancher4-1"
 services:
   etcd:
     snapshot: true
