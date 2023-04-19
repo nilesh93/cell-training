@@ -6,6 +6,12 @@ https://docs.rke2.io/install/quickstart
 
 SSH into VM1, let's consider that the master node and run the following commands
 
+### Clone Git Repo
+
+```
+git clone https://github.com/nilesh93/cell-training.git
+```
+
 ### COPY PEM file for ssh and check if SSH works from VM1 to VM2
 
 ```
