@@ -82,6 +82,10 @@ Update cluster.yaml with your VM IP details
 rke up --config 1-create-cluster/cluster.yaml
 ```
 
+```
+export KUBECONFIG= $(pwd)/kube_config_cluster.yaml
+```
+
 ## Check certs
 
 cd /etc/kubernetes/ssl/

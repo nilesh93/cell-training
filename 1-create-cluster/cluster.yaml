@@ -13,7 +13,7 @@ nodes:
     role:
       - worker
 
-kubernetes_version: "v1.24.10-rancher4-1"
+kubernetes_version: "v1.23.16-rancher2-1"
 services:
   etcd:
     snapshot: true
