@@ -1,7 +1,7 @@
 nodes:
   - address: 192.81.214.227
     user: root
-    # ssh_key_path: ./cellcard.pem
+    ssh_key_path: ./cellcard.pem
     role:
       - controlplane
       - etcd
@@ -9,10 +9,8 @@ nodes:
 
   - address: 67.205.190.198
     user: root
-    # ssh_key_path: ./cellcard.pem
+    ssh_key_path: ./cellcard.pem
     role:
-      - controlplane
-      - etcd
       - worker
 
 kubernetes_version: "v1.24.10-rancher4-1"
