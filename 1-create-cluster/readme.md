@@ -15,7 +15,11 @@ git clone https://github.com/nilesh93/cell-training.git
 ### COPY PEM file for ssh and check if SSH works from VM1 to VM2
 
 ```
-ssh -i <pem-file> ubunutu@<ip-address>
+chmod 600 cellcard.pem
+```
+
+```
+ssh -i cellcard.pem ubunutu@<ip-address>
 ```
 
 ### Install RKE
