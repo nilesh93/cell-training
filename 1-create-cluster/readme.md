@@ -1,6 +1,18 @@
 https://docs.rke2.io/install/quickstart
 
-## Install RKE
+# Setting up an RKE Cluster
+
+## Step 1: Connect to VM and setup Master Node Pre requisites
+
+SSH into VM1, let's consider that the master node and run the following commands
+
+### COPY PEM file for ssh and check if SSH works from VM1 to VM2
+
+```
+ssh -i <pem-file> ubunutu@<ip-address>
+```
+
+### Install RKE
 
 ```
 curl -s https://api.github.com/repos/rancher/rke/releases/latest | grep download_url | grep amd64 | cut -d '"' -f 4 | wget -qi -
@@ -9,7 +21,7 @@ sudo mv rke_linux-amd64 /usr/local/bin/rke
 rke --version
 ```
 
-## Install Kubectl
+### Install Kubectl
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
@@ -18,7 +30,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
 
-## Install Helm
+### Install Helm
 
 ```
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
@@ -26,7 +38,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-## Install container runtime in the VMs
+### Install container runtime in the VMs
 
 ```
 sudo apt-get update -y
@@ -37,16 +49,38 @@ sysctl net.bridge.bridge-nf-call-iptables=1
 sudo systemctl enable docker
 sudo usermod -aG docker $USER
 
-systemctl status docker
+```
 
+## Step 2: Connect to VM and setup Worker Node Pre requisites
+
+SSH into VM2, let's consider that the worker node and run the following commands
+
+### Install container runtime in the VMs
+
+```
+sudo apt-get update -y
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+curl https://releases.rancher.com/install-docker/20.10.sh | sh
+modprobe br_netfilter
+sysctl net.bridge.bridge-nf-call-iptables=1
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
 
 ```
 
-## Create Cluster
+## Step 3: Create Cluster
 
+Get the k8s versions available
+
+```
 rke config --list-version --all
+```
 
+Update cluster.yaml with your VM IP details
+
+```
 rke up --config 1-create-cluster/cluster.yaml
+```
 
 ## Check certs
 
