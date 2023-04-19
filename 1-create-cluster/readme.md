@@ -86,6 +86,12 @@ Get the k8s versions available
 rke config --list-version --all
 ```
 
+clone repo if you havent already.
+
+```
+git clone https://github.com/nilesh93/cell-training.git
+```
+
 Update cluster.yaml with your VM IP details
 
 ```
