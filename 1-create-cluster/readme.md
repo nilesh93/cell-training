@@ -95,11 +95,11 @@ git clone https://github.com/nilesh93/cell-training.git
 Update cluster.yaml with your VM IP details
 
 ```
-vi 1-create-cluster/cluster.yaml
+vi cell-training/1-create-cluster/cluster.yaml
 ```
 
 ```
-rke up --config 1-create-cluster/cluster.yaml
+rke up --config cell-training/1-create-cluster/cluster.yaml
 ```
 
 ```
