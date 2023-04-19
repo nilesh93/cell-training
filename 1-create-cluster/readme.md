@@ -89,6 +89,10 @@ rke config --list-version --all
 Update cluster.yaml with your VM IP details
 
 ```
+vi 1-create-cluster/cluster.yaml
+```
+
+```
 rke up --config 1-create-cluster/cluster.yaml
 ```
 
