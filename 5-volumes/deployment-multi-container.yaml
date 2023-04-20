@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: echo-time
+  name: echo-time
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo-time
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: echo-time
+    spec:
+      containers:
+        - image: busybox:1.27
+          name: log-writer
+          command:
+            - /bin/sh
+            - -c
+            - while true; do echo "$(date)" > /logs/time.txt; done
+          volumeMounts:
+            - name: log-volume
+              mountPath: /logs
+        - image: busybox:1.27
+          name: log-streamer
+          command:
+            - /bin/sh
+            - -c
+            - tail -f /logs/time.txt
+          volumeMounts:
+            - name: log-volume
+              mountPath: /logs
+          resources: {}
+      volumes:
+        - name: log-volume
+          emptyDir: {}
+status: {}

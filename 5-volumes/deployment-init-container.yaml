@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: echo-time
+  name: echo-time
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo-time
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: echo-time
+    spec:
+      initContainers:
+        - image: busybox:1.27
+          name: init-folder
+          command:
+            - /bin/sh
+            - -c
+            - mkdir -p test-folder && echo $time > /test-folder/time.txt
+          volumeMounts:
+            - name: test-volume
+              mountPath: /test-folder
+      containers:
+        - image: busybox:1.27
+          name: busybox
+          command:
+            - /bin/sh
+            - -c
+            - cd test-folder && cat time.txt && sleep 3000
+          volumeMounts:
+            - name: test-volume
+              mountPath: /test-folder
+
+          resources: {}
+      volumes:
+        - name: test-volume
+          emptyDir: {}
+status: {}
