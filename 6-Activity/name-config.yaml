@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  ENV_NAME: nilesh123
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: name-config

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: microservice
+  name: microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: microservice
+    spec:
+      volumes:
+        - name: api-key-volume
+          secret:
+            secretName: api-key-secret
+      containers:
+        - image: nj93/k8s-demo-container:latest
+          name: k8s-demo-container
+          # env:
+          #   - name: ENV_NAME
+          #     value: nilesh
+          envFrom:
+            - configMapRef:
+                name: name-config
+          ports:
+            - containerPort: 8080
+          resources: {}
+          volumeMounts:
+            - name: api-key-volume
+              mountPath: /app/config/config.secret.json
+              subPath: config.secret.json
+status: {}
