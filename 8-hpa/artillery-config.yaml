@@ -1,0 +1,13 @@
+config:
+  target: "https://nilesh.cell.codesnippets.io"
+  phases:
+    - duration: 1
+      arrivalRate: 5
+      name: Warm up
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 5000
+      name: Ramp up load
+    - duration: 1
+      arrivalRate: 50
+      name: Sustained load

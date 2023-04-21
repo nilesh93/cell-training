@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  name: microservice
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: nilesh.cell.codesnippets.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: microservice
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+
+  # This section is only required if TLS is to be enabled for the Ingress
+  tls:
+    - hosts:
+        - nilesh.cell.codesnippets.io
+      secretName: microservice-nilesh-cert
