@@ -1,1 +1,18 @@
 1-create-cluster/kube_config_cluster.yaml
+
+openssl genrsa -out 10-rbac/nilesh.key     
+openssl req -new -key 10-rbac/nilesh.key -out 10-rbac/nilesh.csr
+
+cat <<EOF | kubectl apply -f -
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: jane
+spec:
+  groups:
+  - system:authenticated
+  request: # base64value of csr
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+  - client auth
+EOF
