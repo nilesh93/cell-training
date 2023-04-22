@@ -23,3 +23,5 @@ kubectl get secrets | grep nilesh
 Create a service account with your name
 
 attach clusterrole pod-reader to your service account
+
+kubectl auth can-i get pods --as nilesh-sa:default
